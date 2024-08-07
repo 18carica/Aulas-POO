@@ -1,0 +1,19 @@
+# Ignora executavies
+*
+!/**/
+!*.*
+
+#Ignora arquivos objeto
+*.slo
+*.lo
+*.o
+*.obj
+
+#Ignora executaváeis
+*.exe
+*.out
+*.app
+
+#Ignora a pasta .DIST
+.DIST
+**/ .DIST
