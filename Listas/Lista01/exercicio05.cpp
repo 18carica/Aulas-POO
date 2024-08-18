@@ -1,9 +1,11 @@
 /* Programa 05 */
+/*5. Escreva um programa para ler os valores de uma temperatura em graus Celsius e apresentá-la convertida para graus Fahrenheit e graus Kelvin. A fórmula de conversão para graus Fahrenheit e dada por F = (9 x C + 160)/5. A fórmula de conversão para grau Kelvin e dada por K = C + 273,15. Nessa fórmula, F corresponde a temperatura em graus Fahrenheit, K corresponde a temperatura em graus Kelvin e C corresponde a temperatura em graus Celsius. Para apresentar o resultado, considere a utilização de duas casas decimais.*/
 // exercicio05.cpp
 
 #include <iostream>
 #include <iomanip>  // Necessário para std::setprecision
 
+//Função principal
 int main() {
     double celsius, fahrenheit, kelvin;
 

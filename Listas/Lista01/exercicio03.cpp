@@ -1,4 +1,5 @@
 /* Programa 03 */
+/*3. Escreva um programa que peça para o usuário informar 4 notas bimestrais de um aluno. Em seguida, o programa deve calcular e exibir a media final que o aluno obteve. Para apresentar o resultado, considere a utilização ade duas casas decimais.*/
 // exercicio03.cpp
 
 #include <iostream>

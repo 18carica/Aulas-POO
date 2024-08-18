@@ -1,9 +1,11 @@
 /* Programa 04 */
+/*4. Escreva um programa que peça para o usuário informar quanto ele ganha por hora, o nome do mês e o número de horas que ele trabalhou nesse mês. Em seguida, o programa deve calcular e exibir o salário que ele deve receber no final mês. Para apresentar o resultado, considere a utilização de duas casas decimais.*/
 // exercicio04.cpp
 
 #include <iostream>
 #include <iomanip>  // Necessário para std::setprecision
 
+//Função principal
 int main() {
     double valorHora, salario;
     int horasTrabalhadas;

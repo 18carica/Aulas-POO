@@ -1,4 +1,5 @@
 /* Programa 02 */
+/*2. Escreva um programa que peça pra o usurário informar um número inteiro e então mostre a mensagem: “O número informado foi <número>.”*/
 // exercicio02.cpp
 
 #include <iostream>
