@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//Função principal
+//FunÃ§Ã£o principal
 int main() {
 
     cout << "Hello Word!\n";
