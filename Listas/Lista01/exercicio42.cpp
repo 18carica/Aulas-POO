@@ -15,7 +15,7 @@ int main() {
 
 // -------------------------------------------------------------------------------------------------------------------------------------
 
-// Parte 2: Um ao lado do outro
+/* Parte 2: Um ao lado do outro
 //Função principal
 int main() {
     // Loop para imprimir os números de 1 a 20, um ao lado do outro
@@ -25,3 +25,4 @@ int main() {
     std::cout << std::endl; // Adiciona uma linha após o loop
     return 0;
 }
+*/
