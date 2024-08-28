@@ -1,44 +1,67 @@
 #include <iostream>
-#include <iomanip>  // Necessário para std::setprecision
+#include <limits> // Necessário para usar DBL_MAX
 
 int main() {
-    double salarioPorHora, horasTrabalhadas, salarioBruto, ir, inss, sindicato, salarioLiquido;
+    int peso, codigo, codigoAlto = 0, codigoBaixo = 0, codigoGordo = 0, codigoMagro = 0;
+    double altura, alturaAlto = 0, alturaBaixo = std::numeric_limits<double>::max();
+    double pesoGordo = 0, pesoMagro = std::numeric_limits<double>::max();
+    double somaAltura = 0, somaPeso = 0;
+    int count = 0;
 
-    // Solicita a entrada do salário por hora e do número de horas trabalhadas no mês
-    std::cout << "Digite quanto você ganha por hora: ";
-    std::cin >> salarioPorHora;
-    std::cout << "Digite o número de horas trabalhadas no mês: ";
-    std::cin >> horasTrabalhadas;
+    // Loop para coletar informações de clientes até o código ser 0
+    do {
+        std::cout << "Digite o código do cliente (0 para terminar): ";
+        std::cin >> codigo;
+        if (codigo == 0) break;
 
-    // Calcula o salário bruto
-    salarioBruto = salarioPorHora * horasTrabalhadas;
+        std::cout << "Digite a altura (em metros): ";
+        std::cin >> altura;
+        std::cout << "Digite o peso (em kg): ";
+        std::cin >> peso;
 
-    // Calcula os descontos
-    ir = salarioBruto * 0.11;
-    inss = salarioBruto * 0.08;
-    sindicato = salarioBruto * 0.05;
+        somaAltura += altura; // Soma das alturas para calcular a média
+        somaPeso += peso; // Soma dos pesos para calcular a média
+        count++;
 
-    // Calcula o salário líquido
-    salarioLiquido = salarioBruto - ir - inss - sindicato;
+        // Verifica o cliente mais alto
+        if (altura > alturaAlto) {
+            alturaAlto = altura;
+            codigoAlto = codigo;
+        }
 
-    // Apresenta o resultado em formato de tabela
-    std::cout << "=> Cálculo Salarial" << std::endl;
-    std::cout << "---------------------------------------------" << std::endl;
-    std::cout << std::left << std::setw(25) << "Descrição"
-              << std::right << std::setw(15) << "Valor (R$)" << std::endl;
-    std::cout << "---------------------------------------------" << std::endl;
-    std::cout << std::left << std::setw(25) << "+ Salário Bruto:"
-              << std::right << std::setw(15) << std::fixed << std::setprecision(2) << salarioBruto << std::endl;
-    std::cout << std::left << std::setw(25) << "- IR (11%):"
-              << std::right << std::setw(15) << std::fixed << std::setprecision(2) << ir << std::endl;
-    std::cout << std::left << std::setw(25) << "- INSS (8%):"
-              << std::right << std::setw(15) << std::fixed << std::setprecision(2) << inss << std::endl;
-    std::cout << std::left << std::setw(25) << "- Sindicato (5%):"
-              << std::right << std::setw(15) << std::fixed << std::setprecision(2) << sindicato << std::endl;
-    std::cout << "---------------------------------------------" << std::endl;
-    std::cout << std::left << std::setw(25) << "= Salário Líquido:"
-              << std::right << std::setw(15) << std::fixed << std::setprecision(2) << salarioLiquido << std::endl;
-    std::cout << "---------------------------------------------" << std::endl;
+        // Verifica o cliente mais baixo
+        if (altura < alturaBaixo) {
+            alturaBaixo = altura;
+            codigoBaixo = codigo;
+        }
+
+        // Verifica o cliente mais gordo
+        if (peso > pesoGordo) {
+            pesoGordo = peso;
+            codigoGordo = codigo;
+        }
+
+        // Verifica o cliente mais magro
+        if (peso < pesoMagro) {
+            pesoMagro = peso;
+            codigoMagro = codigo;
+        }
+
+    } while (codigo != 0);
+
+    // Exibe as informações do cliente mais alto, mais baixo, mais gordo e mais magro
+    if (count > 0) {
+        std::cout << "Cliente mais alto: Código " << codigoAlto << ", Altura: " << alturaAlto << " m" << std::endl;
+        std::cout << "Cliente mais baixo: Código " << codigoBaixo << ", Altura: " << alturaBaixo << " m" << std::endl;
+        std::cout << "Cliente mais gordo: Código " << codigoGordo << ", Peso: " << pesoGordo << " kg" << std::endl;
+        std::cout << "Cliente mais magro: Código " << codigoMagro << ", Peso: " << pesoMagro << " kg" << std::endl;
+
+        // Calcula e exibe as médias de altura e peso
+        std::cout << "Média de altura dos clientes: " << somaAltura / count << " m" << std::endl;
+        std::cout << "Média de peso dos clientes: " << somaPeso / count << " kg" << std::endl;
+    } else {
+        std::cout << "Nenhum dado foi inserido." << std::endl;
+    }
 
     return 0;
 }
