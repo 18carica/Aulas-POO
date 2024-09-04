@@ -5,19 +5,24 @@
 
 #include <iostream>
 
-//Função principal
+// Função principal do programa
 int main() {
-    double nota;
+    double nota;  // Variável para armazenar a nota inserida pelo usuário
 
+    // Loop 'do-while' para garantir que o usuário insira uma nota válida entre 0 e 10
     do {
+        // Solicita ao usuário que insira uma nota
         std::cout << "Digite uma nota entre 0 e 10: ";
-        std::cin >> nota;
+        std::cin >> nota;  // Lê a nota inserida
 
+        // Verifica se a nota está fora do intervalo válido (menor que 0 ou maior que 10)
         if (nota < 0.0 || nota > 10.0) {
-            std::cout << "Nota inválida. ";
+            std::cout << "Nota inválida. ";  // Exibe mensagem de erro se a nota for inválida
         }
-    } while (nota < 0.0 || nota > 10.0);
+    } while (nota < 0.0 || nota > 10.0);  // Repete o loop até que uma nota válida seja inserida
 
+    // Exibe a nota válida inserida pelo usuário
     std::cout << "Nota válida: " << nota << "\n";
-    return 0;
+    
+    return 0;  // Finaliza o programa
 }

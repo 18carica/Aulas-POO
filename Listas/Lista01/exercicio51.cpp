@@ -16,44 +16,66 @@ Média dos demais saltos: 9 m
 Resultado final:
 Paulo Giovani: 9 m
 */
+
 // exercicio51.cpp
 
 #include <iostream>
 #include <string>
 #include <algorithm>
 
-//Função principal
+// Função principal do programa
 int main() {
-    std::string nome;
-    double saltos[5];
-    
+    std::string nome;  // Variável para armazenar o nome do atleta
+    double saltos[5];  // Vetor para armazenar as distâncias dos cinco saltos
+
+    // Loop principal do programa, continua até o usuário digitar "sair"
     while (true) {
+        // Solicita o nome do atleta ou a opção para encerrar o programa
         std::cout << "Nome do atleta (ou 'sair' para encerrar): ";
-        std::getline(std::cin, nome);
+        std::getline(std::cin, nome);  // Lê o nome do atleta
+
+        // Se o nome digitado for "sair", encerra o loop
         if (nome == "sair") break;
 
+        // Loop para receber as distâncias dos 5 saltos
         for (int i = 0; i < 5; i++) {
             std::cout << "Digite a distância do salto " << (i + 1) << ": ";
-            std::cin >> saltos[i];
+            std::cin >> saltos[i];  // Lê a distância do salto
         }
-        std::cin.ignore();  // Limpar o buffer de entrada
 
+        // Limpar o buffer de entrada após a leitura dos saltos
+        std::cin.ignore();  // Evita problemas com o getline na próxima iteração
+
+        // Encontra o melhor salto (maior valor) usando a função max_element
         double melhorSalto = *std::max_element(saltos, saltos + 5);
+
+        // Encontra o pior salto (menor valor) usando a função min_element
         double piorSalto = *std::min_element(saltos, saltos + 5);
+
+        // Variável para armazenar a soma total de todos os saltos
         double somaSaltos = 0.0;
 
+        // Loop para somar todas as distâncias dos saltos
         for (int i = 0; i < 5; i++) {
             somaSaltos += saltos[i];
         }
 
+        // Calcula a média dos três saltos restantes (excluindo o melhor e o pior)
         double mediaSaltos = (somaSaltos - melhorSalto - piorSalto) / 3.0;
 
+        // Exibe o resultado do melhor salto
         std::cout << "\nMelhor salto: " << melhorSalto << " m\n";
+
+        // Exibe o resultado do pior salto
         std::cout << "Pior salto: " << piorSalto << " m\n";
+
+        // Exibe a média dos saltos restantes
         std::cout << "Média dos demais saltos: " << mediaSaltos << " m\n";
+
+        // Exibe o resultado final do atleta
         std::cout << "Resultado final:\n";
         std::cout << nome << ": " << mediaSaltos << " m\n\n";
     }
 
-    return 0;
+    return 0;  // Finaliza o programa
 }
