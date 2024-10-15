@@ -8,3 +8,4 @@ Ele contém a seguinte estrutura:
 2. Exercicios: realizados durante as aulas
 3. Listas: listas de exercícios que devem ser entregues
 4. Projetos: arquivos do projeto finais
+5. Provas: código-fontes das provas [P1, P2]
