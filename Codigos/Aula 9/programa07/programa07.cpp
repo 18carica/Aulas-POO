@@ -1,9 +1,8 @@
 //----------------------------------------------------------------------------------------------------------------------
-// Exemplo 05: instanciando múltiplos objetos de classe GradeBook
+// Exemplo 07: programa07.cpp
 //----------------------------------------------------------------------------------------------------------------------
 
 #include <iostream>
-#include <string>
 #include "gradebook.hpp"
 
 using namespace std;
@@ -21,10 +20,18 @@ int main() {
     GradeBook gradeBook2("CS102 Data Structures in C++");
     
     // Exibe valor inicial de courseName para cada GradeBook
-    cout << "* gradeBook1 created for course: " << gradeBook1.getCourseName() << endl;
-    cout << "* gradeBook2 created for course: " << gradeBook2.getCourseName() << endl;
+    cout << "* gradeBook1's initial for course: " << gradeBook1.getCourseName() << endl;
+    cout << "* gradeBook2's initial for course: " << gradeBook2.getCourseName() << endl;
     cout << endl;
-    
+
+    // Modifica o nome do curso para gradebook1
+    gradeBook1.setCourseName("CS101 C++ Programming");
+
+    // Exibe valor inicial de courseName para cada GradeBook
+    cout << "* gradeBook1's new course name: " << gradeBook1.getCourseName() << endl;
+    cout << "* gradeBook2's new course name: " << gradeBook2.getCourseName() << endl;
+    cout << endl;
+   
     // Fim do programa
     cout << endl;
     return 0;
