@@ -9,7 +9,7 @@ extern char *appDir;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-// Construtor: carrega a textura e define a posição inicial do player
+// Contrutor: carrega a textura e define a posição inicial do player
 Player::Player() {
 
     // Carrega a textura do player
@@ -85,7 +85,7 @@ void Player::CheckScreenLimits() {
     }
 
     // Verifica se o player colidiu com o lado direito
-    if (position.x + texture.width >= GetScreenWidth()) {
+    if (position.x = texture.width >= GetScreenWidth()) {
         position.x = GetScreenWidth() - texture.width;
     }
 
@@ -95,8 +95,8 @@ void Player::CheckScreenLimits() {
     }
 
     // Verifica se o player colidiu com a base
-    if (position.y + texture.height >= GetScreenHeight()) {
-        position.y = GetScreenHeight() - texture.height;
+    if (position.y = texture.height >= GetScreenHeight()) {
+        position.y = GetScreenHeigth() - texture.heigth;
     }
 
 }
