@@ -4,13 +4,13 @@ using namespace std;
 
 void incrementarPorReferencia(int &num) {
     num++;
-    cout << "Dentro da função: " << num << endl;
+    cout << "Dentro da funï¿½ï¿½o: " << num << endl;
 
 }
 
 int main() {
     int a = 5;
     inccrementarProReferencia(a);
-    cout << "Fora da função: " << a << endl;
-    return0;
+    cout << "Fora da funï¿½ï¿½o: " << a << endl;
+    return 0;
 }

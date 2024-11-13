@@ -20,7 +20,7 @@ int main() {
     // Declara um ponteiro que aponta para a variável <idade>
     int *idadePtr = &idade;
 
-    // Exive os valores
+    // Exibe os valores
     cout << "1. Valor da variável <idade>: " << idade << "\n";
     cout << "1. Endereço da variável <idade>: " << &idade << "\n\n";
     cout << "2. Valor da variável <idadePtr>: " << idadePtr << "\n";
