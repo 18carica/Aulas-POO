@@ -17,7 +17,7 @@ int main() {
     // Declara e inicializa uma variável inteira
     int idade = 25;
 
-    // Exive os valores
+    // Exibe os valores
     cout << "1. Valor da variável <idade>: " << idade << "\n";
     cout << "1. Endereço da variável <idade>: " << &idade << "\n\n";
     
