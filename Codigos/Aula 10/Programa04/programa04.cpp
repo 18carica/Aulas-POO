@@ -1,66 +1,67 @@
 //----------------------------------------------------------------------------------------------------------------------
-// Programa 04: programa04.cpp -> Jogo
+// Programa 04: programa04.cpp -> Executável
 //----------------------------------------------------------------------------------------------------------------------
 
-// Comando de programa
+#include <iostream>
+#include "date.hpp"
 
-#include <raylib.h>
-#include "player.hpp"
-
-//----------------------------------------------------------------------------------------------------------------------
-// Variáveis globais
-//----------------------------------------------------------------------------------------------------------------------
-
-// Diretório da aplicação
-const char *appDir = GetApplicationDirectory();
+using namespace std;
 
 //----------------------------------------------------------------------------------------------------------------------
 // Função principal
 //----------------------------------------------------------------------------------------------------------------------
 int main() {
 
-    // Define a janela da aplicação
-    InitWindow(800, 600, "Programa 03");
+    cout << "\n>> Default Memberwise Assignment\n\n";
 
-    // Delta time
-    float deltaTime;
+    // Instancia um objeto da classe Date, utilizando o construtor personalizado
+    Date date1(1, 12, 2025);
 
-    // Framerate
-    SetTargetFPS(60);
+    // Instancia um objeto da classe Date, utilizando o construtor padrão
+    Date date2;
 
-    // Instanciamento do player
-    Player player;
+    // Exibe os valores antes da atribuição-padrão de membro a membro
+    cout << "* Before default Memberwise assignment: \n\n";
+    cout << "  - Date 1: ";
+    date1.printDate(); // 1/12/2025
+    cout << endl;
+    cout << "  - Date 2: ";
+    date2.printDate(); // 1/1/2000
 
-    //----------------------------------------------------------------------------------------------------------------------
+    // Realiza a atribuição-padrão de membro a membro
+    date2 = date1;
 
-    // Game loop
-    while (!WindowShouldClose()) {
-
-        // Retorna o tempo em segundos que o último frame levou para ser processado
-        deltaTime = GetFrameTime();
-
-        // Atualiza o player
-        player.Update(deltaTime);
-
-        // Início da renderização dos objetos do jogo
-        BeginDrawing();
-
-        // Define a cor de fundo
-        ClearBackground(BLACK);
-
-        // Renderiza o player
-        player.Draw();
-
-        // Fim da renderização dos objetos do jogo
-        EndDrawing();
-
-    }
+    // Exibe os valores após a atribuição-padrão de membro a membro
+    cout << "\n\n";
+    cout << "\n* After default Memberwise assignment: \n\n";
+    cout << "  - Date 1: ";
+    date1.printDate(); // 1/12/2025
+    cout << endl;
+    cout << "  - Date 2: ";
+    date2.printDate(); // 1/12/2025
 
     //----------------------------------------------------------------------------------------------------------------------
 
-    // Fecha a janela e limpa recursos do Raylib
-    CloseWindow();
-
+    // Fim do programa
+    cout << "\n\n";
     return 0;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// g++ programa02.cpp time.cpp -o programa02
