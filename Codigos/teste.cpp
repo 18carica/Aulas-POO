@@ -12,3 +12,4 @@ int main() {
     return 0;
 }
 
+// g++ programa02.cpp time.cpp -o programa02

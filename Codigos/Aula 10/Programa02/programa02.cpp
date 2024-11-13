@@ -16,52 +16,56 @@ int main() {
     cout << "\n>> Time\n\n";
 
     // Instancia um objeto da classe Time
-    Time t;
-
-    // Exibe os valores iniciais do objeto Time
-    cout << "The initial universal time is ";
-    t.printUniversal(); // 00:00:00
-
-    cout << "\nThe initial standard time is ";
-    t.printStandard(); // 12:00:00 AM
-
-    cout << endl;
+    
+    Time t1; // Todos os argumentos são convertidos para sa configuração padrão
+    Time t2(2); // Especifica hora e converte os minutos e segundos para a configuração padrão
+    Time t3(21, 34); // Especifica hora e minutos, converte os segundos para a configuração padrão
+    Time t4(12, 25, 42); // Especifica hora, minuto e segundos
 
     //----------------------------------------------------------------------------------------------------------------------
 
-    // Define um novo horário
-    t.setTime(13, 27, 6);
+    cout << "Constructed with:\n\n";
 
-    // Exibe os novos valores do objeto Time
-    cout << "\nUniversal time after setTime is ";
-    t.printUniversal(); // 13:27:06
+    // Objeto t1
+    cout << " * t1: all arguments defaulted\n    ";
+    t1.printUniversal();    // 00:00:00
+    cout << "\n    ";
+    t1.printStandard();     // 12:00:00 AM
 
-    cout << "\nStandard time after setTime is ";
-    t.printStandard(); // 1:27:06 PM
+    cout  << "\n\n";
 
-    cout << endl;
+    // Objeto t2
+    cout << " * t2: hour specified, minute and second defaulted\n    ";
+    t2.printUniversal();    // 02:00:00
+    cout << "\n    ";
+    t2.printStandard();     // 2:00:00 AM
 
-    //----------------------------------------------------------------------------------------------------------------------
+    cout  << "\n\n";
 
-    // Tentativa de definir um horário inválido
-    try{
-        t.setTime(99, 99, 99);
+    // Objeto t3
+    cout << " * t3: hour and minute specified, second defaulted\n    ";
+    t3.printUniversal();    // 21:34:00
+    cout << "\n    ";
+    t3.printStandard();     // 9:34:00 AM
+
+    cout  << "\n\n";
+
+    // Objeto t4
+    cout << " * t4: hour minute and second specified\n    ";
+    t4.printUniversal();    // 12:24:42
+    cout << "\n    ";
+    t4.printStandard();     // 12:25:42 PM
+
+    cout  << "\n\n";
+
+    // Tentativa de iniciar t5 com valores inválidos
+    try {
+        Time t5(25, 74, 99); // Especifica valores inválidos
     }
     // Se deu erro, captura e exibe a exceção
-    catch(invalid_argument  &e) {
-        cout << "\nException: " << e.what() << endl;
+    catch(invalid_argument &e) {
+        cerr << "  * Exception while initializing t5: " << e.what() << endl;
     }
-
-    //----------------------------------------------------------------------------------------------------------------------
-
-    // Exibe os valores do objeto Time, após especificar valores inválidos
-    cout << "\nAfter attempting invalid settings: \n";
-
-    cout << "\n - Universal time: ";
-    t.printUniversal(); // 13:27:06
-
-    cout << "\n - Standard time: ";
-    t.printStandard(); // 1:26:06 PM
 
     //----------------------------------------------------------------------------------------------------------------------
 
