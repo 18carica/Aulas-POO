@@ -9,7 +9,7 @@ extern char *appDir;
 
 //----------------------------------------------------------------------------------------------------------------------
 
-// Contrutor: carrega a textura e define a posição inicial do player
+// Construtor: carrega a textura e define a posição inicial do player
 Player::Player() {
 
     // Carrega a textura do player
