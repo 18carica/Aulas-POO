@@ -64,4 +64,4 @@ int main() {
 
 
 
-// g++ programa02.cpp time.cpp -o programa02
+// g++ programa04.cpp date.cpp -o programa04
