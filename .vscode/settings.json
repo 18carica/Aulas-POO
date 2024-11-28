@@ -5,5 +5,9 @@
         "Instanciamento",
         "Memberwise",
         "Raylib"
-    ]
+    ],
+    "files.associations": {
+        "iostream": "cpp",
+        "vector": "cpp"
+    }
 }
