@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------------------------------------------
-// Exemplo 06: enemy.cpp -> Implementação
+// Exemplo 07: enemy.cpp -> Implementação
 //----------------------------------------------------------------------------------------------------------------------
 
 #include "enemy.hpp"
@@ -102,8 +102,67 @@ void Enemy::Update(float deltaTime) {
         position.y += speed * deltaTime;
 
         // Teste Zigzag
-        // position.y ++ speed *
+        // position.y ++ speed * deltaTime;
+        // position.x += sin(deltaTime * 0.5f) * speed;
 
+    } else {
 
-   }
+        // Movimenta para cima
+        position.y -= speed * deltaTime;
+
+        // Teste Zigzag
+        // position.y -= speed * deltaTime;
+        // position.x += sin(deltaTime * 0.5f) * speed;
+
+    }
+
+    // Verifica se o inimigo atingiu o limite inferior da tela
+    if (position.y > GetScreenHeight() + texture.height) {
+
+        // Muda a direção para cima
+        movingDown = false;
+
+        // Gera uma posição horizontal aleatória
+        position.x = GetRandomValue(0, GetScreenWidth() - texture.width);
+
+        // Define uma nova movimentação do inimigo
+        speed = GetRandomValue(5, 250) * 1.0f;
+
+    }
+    // Verifica se o inimigo atingiu o limite superior da tela
+    else if (position.y < 0 -texture.height) {
+
+        // Muda a direção para baixo
+        movingDown = true;
+
+        // Gera uma posição horizontal aleatória
+        position.x = GetRandomValue(0, GetScreenWidth() - texture.width);
+
+        // Define uma nova movimentação do inimigo
+        speed = GetRandomValue(5, 250) * 1.0f;
+
+    }
+
 }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+// Método para verificar se o inimigo está fora da tela
+bool Enemy::IsOffScreen() const {
+
+    // Retorna true se o inimigo saiu da tela
+    return position.y > GetScreenHeight();
+
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+// Método para verificar a colisão do inimigo com o player
+bool Enemy:: CheckCollision(const Player& player) const {
+
+    // Utiliza um círculo para verificar a colisão entre o inimigo e o player
+    return CheckCollisionCircles(position, radius, player.GetPosition(), player.GetRadius());
+
+}
+

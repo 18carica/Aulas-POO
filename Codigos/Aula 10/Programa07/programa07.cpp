@@ -7,7 +7,7 @@
 #include "C:\raylib\w64devkit\x86_64-w64-mingw32\include\raylib.h"
 #include "player.hpp"
 #include "enemy.hpp"
-#include <iostream>
+#include <algorithm>
 #include <vector>
 #include <memory> // unique_ptr
 
@@ -26,7 +26,10 @@ const char *appDir = GetApplicationDirectory();
 int main() {
 
     // Define a janela da aplicação
-    InitWindow(800, 600, "Programa 06");
+    InitWindow(800, 600, "Programa 07");
+
+    // Inicializa o dispositivo de áudio
+    InitAudioDevice();
 
     // Delta time
     float deltaTime;
@@ -39,28 +42,30 @@ int main() {
 
     //----------------------------------------------------------------------------------------------------------------------
 
-    // Ainda não tenho nenhum inimigo criado, mas consigo acessar essa informação
-    cout << "\n >> Enemy count: " << Enemy::getEnemyCount() << "\n\n";
-
     // Vetor para armazenar os inimigos como ponteiros exclusivos
-    // Para evitar que os objetos do tpo Enemy compartilhem acidentalmente 
-    // recursos ou que múltiplas instâncias interfiram umas nas outras,
-    // utilizamos ponteiros exclusivos (std::unique_ptr<Enemy>) no vetor enemies
-    vector<unique_ptr<Enemy>> enemies;
+    vector <unique_ptr<Enemy>> enemies;
 
-    // Instanciamento de cinco inimigos
-    // Neste caso, utiliza o construtor padrão de Enemy
-    for (int i = 0; i < 5; i++) {
+    // Loop para Instanciamento dos inimigos
+    // Utiliza o construtor padrão
+    for (int i = 0; i < 10; i++) {
         enemies.emplace_back(unique_ptr<Enemy>(new Enemy()));
     }
 
-    // Informa quantos inimigos foram criados
-    cout << "\n >> Enemy count: " << Enemy::getEnemyCount() << "\n\n";
+    //----------------------------------------------------------------------------------------------------------------------
+
+    // Carrega a música de fundo
+    Music music = LoadMusicStream(TextFormat("%s/assets/music/music.ogg", appDir));
+
+    // Toca a música em loop
+    PlayMusicStream(music);
 
     //----------------------------------------------------------------------------------------------------------------------
 
     // Game loop
     while (!WindowShouldClose()) {
+
+        // Atualiza o stream da música
+        UpdateMusicStream(music);
 
         // Retorna o tempo em segundos que o último frame levou para ser processado
         deltaTime = GetFrameTime();
@@ -68,12 +73,46 @@ int main() {
         // Atualiza o player
         player.Update(deltaTime);
 
-        // Atualiza de todos os inimigos
+        // Atualização da posição de todos os inimigos
         for (auto& enemy : enemies) {
             enemy->Update(deltaTime);
         }
 
-        // Início da renderização dos objetos do jogo
+        // Remove os inimigos que colidiram com o player
+        enemies.erase(
+            remove_if(enemies.begin(), enemies.end(),
+                [&](const unique_ptr<Enemy>& enemy) {
+
+                    // Se houve colisão com o player
+                    if (enemy->CheckCollision(player)) {
+
+                        // Atribui o dano (10%)
+                        player.TakeDamage(10);
+
+                        // Marca o inimigo para remição
+                        return true;
+                    }
+
+                    // Mantém o inimigo
+                    return false;
+                }),
+            
+            enemies.end()
+        );
+
+        // Remove os inimigos que Ultrapassaram o limite inferior da tela
+        /*
+        enemies.erase(
+            remove_if(enemies.begin(), enemies.end(),
+                [](const unique_ptr<Enemy>& enemy) {
+                    // Condição para remover
+                    return enemy->IsOffScreen();
+                }),
+            enemies.end()
+        );
+        */
+
+       // Início da renderização dos objetos do jogo
         BeginDrawing();
 
         // Define a cor de fundo
@@ -95,6 +134,15 @@ int main() {
             22,
             WHITE
         );
+
+        // Renderiza o texto com a saúde do player
+        DrawText(
+            TextFormat("Grogu: %d %%", 100 * player.GetHealth() / 100),
+            GetScreenWidth() - 150.0f,
+            50.0f,
+            22,
+            WHITE
+        );
         
         // Fim da renderização dos objetos do jogo
         EndDrawing();
@@ -102,6 +150,12 @@ int main() {
     }
 
     //----------------------------------------------------------------------------------------------------------------------
+
+    // Libera a memória utilizada pela música de fundo
+    UnloadMusicStream(music);
+
+    // Fecha o dispositivo de áudio
+    CloseAudioDevice();
 
     // Fecha a janela e limpa recursos do Raylib
     CloseWindow();
