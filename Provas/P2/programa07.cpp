@@ -108,7 +108,7 @@ int main() {
 
         DrawText(TextFormat("Enemies: %d", Enemy::getEnemyCount()), GetScreenWidth() - 130.0f, 20.0f, 22, WHITE);
         DrawText(TextFormat("Health: %d %%", player.GetHealth()), GetScreenWidth() - 150.0f, 50.0f, 22, WHITE);
-        DrawText(TextFormat("Score: %d", player.GetScore()), 20.0f, 20.0f, 22, YELLOW);
+        DrawText(TextFormat("Score: %d", player.GetScore()), GetScreenWidth() - 110.0f, 75.0f, 22, WHITE);
 
         EndDrawing();
     }
